@@ -2,7 +2,8 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const rp = require('request-promise-native');
+
+var http = require ('http');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -24,25 +25,22 @@ app.post("/Dialogflow", function(request, response){
     response.json({ "fulfillmentText" : "Isso aqui é um teste de api"});
   }
   
-    if (intentName == "ConsultaSaldo"){
-
-
-      function get_products(agent){
-      var url = 'https://705861b5.ngrok.io/products';
-      var options = {
-      uri: url,
-      json: true
-    };
-    return rp.get( options )
-      .then( body => {
-        agent.add("Got a response: "+body.product_name);
-      })
-      .error( err => {
-        agent.add("Got an error: ");
+  if (intentName == "ConsultaSaldo"){
+  var url = 'http://ec2-3-135-220-214.us-east-2.compute.amazonaws.com:8080/greeting';
+  http.get(url, function(res){
+    var body = '';
+    res.on('data', function(chunk){
+      body += chunk;
     });
-}
-    response.json({ "fulfillmentText" : "Isso aqui é um teste de api"});
+    res.on('end', function(){
+     var respose_jquery = JSON.parse(body);
+    response.json({ "fulfillmentText" : respose_jquery});
+    });
+  }).on('error', function(e){
+    response.json({ "fulfillmentText" : "Deu ruim"});
+  });  
   }
+  
   
 });
 
