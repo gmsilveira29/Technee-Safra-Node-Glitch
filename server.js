@@ -26,8 +26,10 @@ app.post("/Dialogflow", function(request, response){
   }
   
   if (intentName == "ConsultaSaldo"){
+  response.json({ "fulfillmentText" : "Ping 1"});
   var url = 'http://ec2-3-135-220-214.us-east-2.compute.amazonaws.com:8080/greeting';
-  http.get(url, function(res){
+  app.get(url, function(res){
+  response.json({ "fulfillmentText" : "Ping 2"});
     var body = '';
     res.on('data', function(chunk){
       body += chunk;
