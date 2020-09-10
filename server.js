@@ -4,9 +4,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const http = require('http')
 const options = {
-  hostname: 'ec2-3-135-220-214.us-east-2.compute.amazonaws.com',
+  hostname: 'ec2-3-136-20-161.us-east-2.compute.amazonaws.com',
   port: 8080,
-  path: '/greeting',
+  path: '/saldo',
   method: 'GET'
 }
 
@@ -36,7 +36,7 @@ app.post("/Dialogflow", function(request, response){
 
   res.on('data', d => {
     process.stdout.write(d)
-    response.json({ "fulfillmentText" : "Deu bom "+ d});
+    response.json({ "fulfillmentText" : "Saldo da conta: "+ d});
   })
 })
 
