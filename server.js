@@ -1,3 +1,25 @@
+// server.js
+// inicio aplicação node
+
+// init projeto
+var express = require('express');
+var app = express();
+
+
+// somente permite acesso com usuário e senha
+var userName = "guest";
+var userPass = process.env.PASSWORD;
+
+var basicAuth = require('basic-auth');
+app.use(function (request, response, next) {
+  var user = basicAuth(request);
+  if (!user || user.name !== userName || user.pass !== userPass) {
+    response.set('WWW-Authenticate', 'Basic realm="site"');
+    return response.status(401).send();
+  }
+  return next();
+});
+
 
 const express = require("express");
 const app = express();
