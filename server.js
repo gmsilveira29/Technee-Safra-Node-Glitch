@@ -28,21 +28,21 @@ const http = require('http')
 
 
 const getSaldo = {
-  hostname: 'ec2-3-15-145-39.us-east-2.compute.amazonaws.com',
+  hostname: '',
   port: 8080,
   path: '/saldo',
   method: 'GET'
 }
 
 const getDados = {
-  hostname: 'ec2-3-15-145-39.us-east-2.compute.amazonaws.com',
+  hostname: '',
   port: 8080,
   path: '/dados',
   method: 'GET'
 }
 
 const getExtrato = {
-  hostname: 'ec2-3-15-145-39.us-east-2.compute.amazonaws.com',
+  hostname: '',
   port: 8080,
   path: '/extrato',
   method: 'GET'
